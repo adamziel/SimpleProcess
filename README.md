@@ -1,12 +1,13 @@
 # SimpleProcess #
 
 This small library makes it simple to use the `pcntl` extension;
-Also, I strongly encourage you to take a look at the PThreads library (http://pthreads.org) which is more powerful than this tiny wrapper; I wrote it just because using pthreads was not an option for me.
+Also, I strongly encourage you to take a look at the `PThreads` library (http://pthreads.org) which is more powerful than this tiny wrapper; I wrote it just because using PThreads was not an option in my use-case.
 
 # Basic usage #
 
 Basic usage looks like this:
 
+```php
     declare(ticks=1); // This part is critical, be sure to include it
     $manager = new SimpleProcess\ProcessManager();
     $manager->fork(new SimpleProcess\Process(function() { sleep(5); }, "My super cool process"));
@@ -26,13 +27,15 @@ Basic usage looks like this:
         }
         sleep(1);
     } while($this->manager->countAliveChildren());
-    
+```
+  
 And that's it! Child processes will execute only the provided callable, so there is no need to worry about "If I am in the right process in this line?"; Parent process is executed normally after the `->fork()` was called; `ProcessManager` class also takes care of reaping children processes, so you may focus on your application's logic instead of dark corners of `pcntl_*` functions usage.
 
 # Communication between child processes and parent process #
 
 ProcessManager may allocate some shared memory for each child process - then you may access it from the parent process:
 
+```php
     declare(ticks=1); // This part is critical, be sure to include it
     $manager = new SimpleProcess\ProcessManager();
     $manager->allocateSHMPerChildren(1000); // allocate 1000 bytes for each forked process
@@ -64,13 +67,15 @@ ProcessManager may allocate some shared memory for each child process - then you
         }
         sleep(1);
     } while($this->manager->countAliveChildren());
-    
+```
+
 # Other things #
 
 This library comes also with the `Semaphore` class in case you'd need to use semaphores somewhere in your code; Use it like this:
 
+```php
     $s = Semaphore::create('critical_section');
     $s->acquire();
     $s->release();
-    
+```
     
