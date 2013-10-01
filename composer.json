@@ -2,12 +2,13 @@
     "name": "azielinski/simple-process",
     "description": "Simple wrapper for PHP pcntl fork functions",
     "license": "MIT",
+    "version": "0.1",
     "autoload": {
         "psr-0": {
-            "": "src/",
+            "": "src/"
         }
     },
     "require": {
-        "ext-pcntl": "*",
+        "ext-pcntl": "*"
     }
 }
