@@ -3,6 +3,18 @@
 This small library makes it simple to use the `pcntl` extension;
 Also, I strongly encourage you to take a look at the `PThreads` library (http://pthreads.org) which is more powerful than this tiny wrapper; I wrote it just because using PThreads was not an option in my use-case.
 
+# Installation #
+
+## Composer ##
+
+Just add the following line to your `"require":` section:
+
+    "azielinski/simple-process": "dev-master"
+    
+## Don't use composer? ##
+
+Then just clone the repo :) You will also have to manually `include` all four files.
+
 # Basic usage #
 
 Basic usage looks like this:
