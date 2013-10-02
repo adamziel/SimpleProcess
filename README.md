@@ -11,7 +11,7 @@ Just add the following line to your `"require":` section:
 
     "azielinski/simple-process": "dev-master"
     
-## Don't use composer? ##
+## You do not use composer? ##
 
 Then just clone the repo :) You will also have to manually `include` all four files.
 
