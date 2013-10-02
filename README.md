@@ -7,7 +7,7 @@ Also, I strongly encourage you to take a look at the `PThreads` library (http://
 
 ### Requirements ###
 
-    PHP >= 53
+    PHP >= 5.3
     pcntl extension installed
 
 ### Composer ###
