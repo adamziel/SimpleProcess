@@ -5,13 +5,18 @@ Also, I strongly encourage you to take a look at the `PThreads` library (http://
 
 # Installation #
 
-## Composer ##
+### Requirements ###
+
+    PHP >= 53
+    pcntl extension installed
+
+### Composer ###
 
 Just add the following line to your `"require":` section:
 
     "azielinski/simple-process": "dev-master"
     
-## You do not use composer? ##
+### You do not use composer? ###
 
 Then just clone the repo :) You will also have to manually `include` all four files.
 
@@ -43,7 +48,7 @@ do
   
 And that's it! Child processes will execute only the provided callable, so there is no need to worry about "If I am in the right process in this line?"; Parent process is executed normally after the `->fork()` was called; `ProcessManager` class also takes care of reaping children processes, so you may focus on your application's logic instead of dark corners of `pcntl_*` functions usage.
 
-# Communication between child processes and parent process #
+# parent<->child communication #
 
 ProcessManager may allocate some shared memory for each child process - then you may access it from the parent process:
 
@@ -79,6 +84,8 @@ do
     }
     sleep(1);
 } while($manager->countAliveChildren());
+
+$manager->cleanup(); // You can also call cleanup() manually if you want to
 ```
 
 # Other things #
@@ -86,7 +93,7 @@ do
 This library comes also with the `Semaphore` class in case you'd need to use semaphores somewhere in your code; Use it like this:
 
 ```php
-$s = Semaphore::create('critical_section');
+$s = SimpleProcess\Semaphore::create('critical_section');
 $s->acquire();
 $s->release();
 ```
