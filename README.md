@@ -46,7 +46,7 @@ do
 } while($manager->countAliveChildren());
 ```
   
-And that's it! Child processes will execute only the provided callable, so there is no need to worry about "If I am in the right process in this line?"; Parent process is executed normally after the `->fork()` was called; `ProcessManager` class also takes care of reaping children processes, so you may focus on your application's logic instead of dark corners of `pcntl_*` functions usage.
+And that's it! Child processes will execute only the provided callable, so there is no need to worry about "Am I in the right process in this line?"; Parent process is executed normally after the `->fork()` was called; `ProcessManager` class also takes care of reaping children processes, so you may focus on your application's logic instead of dark corners of `pcntl_*` functions usage.
 
 # parent<->child communication #
 
