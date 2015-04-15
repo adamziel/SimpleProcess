@@ -69,7 +69,7 @@ class ProcessManager
         // Error
         if($pid == -1)
         {
-            throw new RuntimeException('pcntl_fork() returned -1, are you sure you are running the script from CLI?');
+            throw new \RuntimeException('pcntl_fork() returned -1, are you sure you are running the script from CLI?');
         }
 
         // Child process
