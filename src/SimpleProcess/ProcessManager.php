@@ -125,6 +125,40 @@ class ProcessManager
 
         return null;
     }
+    
+    /**
+     * @param int $pid
+     * @return null
+     */
+    public function removeChildByPID($pid)
+    {
+        foreach($this->children as $key=>$process)
+        {
+            if($process->getPid() == $pid)
+            {
+                unset($this->children[$key]);
+            }
+        }
+
+        return null;
+    }
+    
+    /**
+     * @param $InternalId
+     * @return null
+     */
+    public function removeChildByInternalId($InternalId)
+    {
+        foreach($this->children as $key=>$process)
+        {
+            if($process->getInternalId() == $InternalId)
+            {
+                unset($this->children[$key]);
+            }
+        }
+
+        return null;
+    }
 
     public function countAliveChildren()
     {
