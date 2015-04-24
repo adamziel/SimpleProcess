@@ -23,7 +23,7 @@ class Process
     {
         $this->setStarted();
         $callback = $this->callback;
-        $callback($this);
+        call_user_func($callback, $this);
         exit;
     }
 
