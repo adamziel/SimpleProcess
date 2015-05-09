@@ -42,10 +42,11 @@ class ProcessManager
 
     protected function setup()
     {
-        pcntl_signal(SIGCHLD, function($signal) {
+        $obj = $this;
+        pcntl_signal(SIGCHLD, function($signal) use ($obj) {
             while(($pId = pcntl_waitpid(-1, $status, WNOHANG)) > 0 )
             {
-                $this->getChildByPID($pId)->setFinished(true, $status);
+                $obj->getChildByPID($pId)->setFinished(true, $status);
             }
         });
         
