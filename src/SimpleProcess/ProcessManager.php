@@ -42,8 +42,8 @@ class ProcessManager
 
     protected function setup()
     {
-        $obj = &$this;
-        pcntl_signal(SIGCHLD, function($signal) use (&$obj) {
+        $obj = $this;
+        pcntl_signal(SIGCHLD, function($signal) use ($obj) {
             while(($pId = pcntl_waitpid(-1, $status, WNOHANG)) > 0 )
             {
                 $obj->getChildByPID($pId)->setFinished(true, $status);
